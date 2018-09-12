@@ -63,7 +63,8 @@
                     'fontsize',16);
         end
          % pause(0.1);
-        %}
+      %}
+        
    end
    
    
@@ -75,7 +76,7 @@
    % variance1 = var(last);
    variance = mean(last.^2) - mean(last)^2;
    
-   % fprintf('Average: %f\nVariance: %f\n\n', average, variance);
+   fprintf('Average: %f\nVariance: %f\n\n', average, variance);
    
    
    
