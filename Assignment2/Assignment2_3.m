@@ -41,3 +41,20 @@ title('Different Hamming distances for 1000 iterations');
 xlabel('Normalized Hamming distance');
 ylabel('Occurrences');
 set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
+
+
+S_mean = mean(S);
+S_var = var(S, 1);
+D_mean = mean(D);
+D_var = var(D, 1);
+
+figure(2);
+% plot(normpdf(0:0.1:1, S_mean, S_var));
+histogram(S);
+hold on;
+histogram(D);
+legend('S', 'D');
+title('Different Hamming distances for 1000 iterations');
+xlabel('Normalized Hamming distance');
+ylabel('Occurrences');
+set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
