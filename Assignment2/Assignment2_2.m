@@ -2,20 +2,21 @@ load('./lab_week2_data/lab1_2.mat');
 x = measurements(:,1);
 y = measurements(:,2);
 
+% Plot data
 figure(1);
 plot(x,y,'.');
-title('Height vs hair length of 200 people', 'FontName', 'Times New Roman');
-xlabel('Height (cm)', 'FontName', 'Times New Roman');
-ylabel('Lenght (cm)', 'FontName', 'Times New Roman');
-set(gca,'fontsize',8,'FontName', 'Times New Roman');
+title('Height vs hair length of 200 people');
+xlabel('Height (cm)');
+ylabel('Lenght (cm)');
+set(gca,'fontsize', 8, 'fontname', 'Times New Roman');
 
 % Code for the second question
 figure(2);
 plot(x,y,'.');
-title('Height vs hair length of 200 people, with one possible decision criterion', 'FontName', 'Times New Roman');
-xlabel('Height (cm)', 'FontName', 'Times New Roman');
-ylabel('Lenght (cm)', 'FontName', 'Times New Roman');
-set(gca,'fontsize',8,'FontName', 'Times New Roman');
+title('Height vs hair length of 200 people, with one possible decision criterion');
+xlabel('Height (cm)');
+ylabel('Lenght (cm)');
+set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
 hold on;
 plot([165.5 194.5], [0 60]);
 
@@ -34,4 +35,4 @@ for i=1:200
     end
 end
 
-fprintf('Side 1: %d\nSide2: %d', a, b);
+fprintf('Persons considered women: %d\nPersons considered men:   %d\n', a, b);
