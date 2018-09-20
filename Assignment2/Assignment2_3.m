@@ -37,3 +37,7 @@ histogram(S);
 hold on;
 histogram(D);
 legend('S', 'D');
+title('Different Hamming distances for 1000 iterations');
+xlabel('Normalized Hamming distance');
+ylabel('Occurrences');
+set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
