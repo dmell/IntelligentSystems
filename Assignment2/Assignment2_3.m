@@ -29,8 +29,6 @@ for i=1:1000
     iriscode1 = person(person_perm(1)).iriscode(randi(20), :);
     iriscode2 = person(person_perm(2)).iriscode(randi(20), :);
     
-    test = sum(xor(iriscode1, iriscode2) == 1);
-    
     % normalized hamming distance
     D(i) = sum(xor(iriscode1, iriscode2) == 1) / 30;
 end
