@@ -33,26 +33,37 @@ for i=1:1000
     D(i) = sum(xor(iriscode1, iriscode2) == 1) / 30;
 end
 
-histogram(S + 1/60, min(S):(1/30):max(S));
+% 3.3 adjusted version
+figure(1);
+histogram(S + 1/60, min(S):(1/30):max(S)+1/30);
 hold on;
-histogram(D + 1/60, min(D):(1/30):max(D));
+histogram(D + 1/60, min(D):(1/30):max(D)+1/30);
 legend('S', 'D');
 title('Different Hamming distances for 1000 iterations');
 xlabel('Normalized Hamming distance');
 ylabel('Occurrences');
 set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
 
+% default version
+figure(2);
+histogram(S);
+hold on;
+histogram(D);
+legend('S', 'D');
+title('Different Hamming distances for 1000 iterations');
+xlabel('Normalized Hamming distance');
+ylabel('Occurrences');
+set(gca, 'fontsize', 8, 'fontname', 'Times New Roman');
 
 S_mean = mean(S);
 S_var = var(S, 1);
 D_mean = mean(D);
 D_var = var(D, 1);
 
-figure(2);
-plot(normpdf(0:0.1:1, S_mean, S_var));
-histogram(S);
+figure(3);
+histfit(S, round((max(S)-min(S))*30)+1, 'normal');
 hold on;
-histogram(D);
+histfit(D, round((max(D)-min(D))*30)+1, 'normal');
 legend('S', 'D');
 title('Different Hamming distances for 1000 iterations');
 xlabel('Normalized Hamming distance');
