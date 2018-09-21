@@ -33,9 +33,9 @@ for i=1:1000
     D(i) = sum(xor(iriscode1, iriscode2) == 1) / 30;
 end
 
-histogram(S);
+histogram(S + 1/60, min(S):(1/30):max(S));
 hold on;
-histogram(D);
+histogram(D + 1/60, min(D):(1/30):max(D));
 legend('S', 'D');
 title('Different Hamming distances for 1000 iterations');
 xlabel('Normalized Hamming distance');
@@ -49,7 +49,7 @@ D_mean = mean(D);
 D_var = var(D, 1);
 
 figure(2);
-% plot(normpdf(0:0.1:1, S_mean, S_var));
+plot(normpdf(0:0.1:1, S_mean, S_var));
 histogram(S);
 hold on;
 histogram(D);
