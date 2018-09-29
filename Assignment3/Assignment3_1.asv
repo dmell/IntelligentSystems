@@ -1,0 +1,33 @@
+% What we have to calculate is: knowing that x is the lenght of the fish,
+% give me the probability of that fish to be a seabass (salmon).
+% The data we have is: given that this fish is a seabass, p_seabass(i) gives
+% the percentage of seabass that have lenght i.
+
+load("lab_week3_data/lab3_1.mat");
+N = numel(p_salmon);
+% "Given that sea bass is caught 3 times as often as salmon"
+prior_salmon = 0.25;
+prior_seabass = 0.75;
+
+posterior_salmon = zeros(N);
+posterior_seabass = zeros(N);
+
+for i=1:N
+    % evidence
+    p_x = p_salmon(i) * prior_salmon + p_seabass(i) * prior_seabass;
+    % Bayes formula for both sets
+    posterior_salmon(i) = (p_salmon(i) * prior_salmon)/p_x;
+    posterior_seabass(i) = (p_seabass(i) * prior_seabass)/p_x;
+end
+
+p1 = plot(posterior_salmon, 'color', 'r');
+hold on;
+p2 = plot(posterior_seabass, 'color', 'b');
+legend([p1(1), p2(1)], 'P(salmon | x)', 'P(seabass | x)');
+title('Posterior probabilities');
+xlabel('Lenght (cm)');
+ylabel('Probability');
+set(gca, 'fontsize', 8.5, 'fontname', 'Times New Roman');
+
+if (posterior_seabass(8) > posterior_salmon(8))
+    fprintf('The fish with lenght 8 cm can be classified as a 
