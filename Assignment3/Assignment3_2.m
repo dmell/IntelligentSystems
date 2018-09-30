@@ -1,4 +1,4 @@
-load("lab_week3_data/normdist.mat");
+load('lab_week3_data/normdist.mat');
 
 % 2.1
 figure(1);
@@ -22,7 +22,7 @@ dev2 = std(S2);
 figure(2);
 % x values to calculate the normal distributions
 X = [-40:1:100];
-p1 = plot(X, normpdf(X, mean1, dev1), 'color', 'b');
+% p1 = plot(X, normpdf(X, mean1, dev1), 'color', 'b');
 hold on;
 p2 = plot(X, normpdf(X, mean2, dev2), 'color', 'r');
 p3 = plot(S1, 0, '-bo');

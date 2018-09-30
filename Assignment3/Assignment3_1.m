@@ -3,7 +3,7 @@
 % The data we have is: given that this fish is a seabass, p_seabass(i) gives
 % the percentage of seabass that have length i.
 
-load("lab_week3_data/lab3_1.mat");
+load('lab_week3_data/lab3_1.mat');
 N = numel(p_salmon);
 % "Given that sea bass is caught 3 times as often as salmon"
 prior_salmon = 0.25;
