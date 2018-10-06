@@ -13,3 +13,7 @@ leafOrder = optimalleaforder(tree, distances);
 
 % we use introduce the labels in the plot
 [H,T] = dendrogram(tree, 'Reorder', leafOrder, 'Labels', labels, 'Orientation', 'right');
+title('Dendrogram of the 19 stocks');
+xlabel('Euclidean distance');
+ylabel('Time series');
+set(gca, 'fontsize', 9.5, 'fontname', 'Times New Roman');
