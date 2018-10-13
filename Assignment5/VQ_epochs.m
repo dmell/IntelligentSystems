@@ -1,4 +1,4 @@
-function [] = VQ (dataset, K, eta, t_max)
+function [] = VQ_epochs (dataset, K, eta, t_max)
 
 P = size(dataset, 1); % number of samples
 N = size(dataset, 2); % dimension of input vector
@@ -15,12 +15,10 @@ dataWinner = zeros(1, P);
 
 % for every prototype, in every epoch, for every iteration we save the
 % position
-trace = zeros(K, t_max+1, P, N);
+trace = zeros(K, t_max + 1, N);
 
 for indexProto=1:K
-    for point=1:P
-        trace(indexProto, 1, point, :) = proto(indexProto, :);
-    end
+    trace(indexProto, 1, :) = proto(indexProto, :);
 end
 
 % for every epoch
@@ -48,11 +46,11 @@ for t=1:t_max
         winner = winner + eta * (dataset(i,:) - winner);
         proto(index, :) = winner;
         
-        for indexProto=1:K
-            trace(indexProto, t+1, i, :) = proto(indexProto, :);
-        end
-
         dataWinner(i) = index;
+    end
+    
+    for indexProto=1:K
+        trace(indexProto, t + 1, :) = proto(indexProto, :);
     end
     
     % quantization error calculation
@@ -62,19 +60,23 @@ for t=1:t_max
 end
 
 figure(1);
-scatter(dataset(:,1), dataset(:,2), '.');
-hold on;
-scatter(proto(:, 1), proto(:, 2));
+scatter(dataset(:,1), dataset(:,2), '.', 'LineWidth', 1.5);
+% scatter(proto(:, 1), proto(:, 2));
 for indexProto = 1:K
-    positions = zeros((t_max+1)*P, N);
+    positions = zeros(t_max+1, N);
     
-    for epoch = 1:t_max
-        for point = 1:P
-            positions((epoch-1)*P+point, :) = trace(indexProto, epoch, point, :);
-        end
+    for epoch = 1:t_max+1
+        positions(epoch, :) = trace(indexProto, epoch, :);
     end
     hold on;
-    plot(positions(:, 1), positions(:, 2), '-');
+    p = plot(positions(:, 1), positions(:, 2), '-', 'LineWidth', 2);
+    hold on;
+    s = scatter(proto(indexProto,1), proto(indexProto,2));
+    set(s, 'MarkerEdgeColor', get(p, 'Color'), 'LineWidth', 2);
+    title(sprintf('Trajectories of prototypes, with sample points k = %d, \\eta = %.4f', K, eta));
+    xlabel('x');
+    ylabel('y');
+    set(gca, 'fontsize', 9, 'fontname', 'Times New Roman');
 end
 
 figure(2);
@@ -82,4 +84,4 @@ plot(1:t_max, H_VQ);
 title(sprintf('Learning curve, k = %d, \\eta = %.4f', K, eta));
 xlabel('t');
 ylabel('H_{VQ}');
-set(gca, 'fontsize', 9.5, 'fontname', 'Times New Roman');
+set(gca, 'fontsize', 13, 'fontname', 'Times New Roman');
