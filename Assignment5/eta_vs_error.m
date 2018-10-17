@@ -2,18 +2,14 @@
 load('w6_1x.mat');
 
 K = 2; % number of prototypes
-eta = 0.001; % learning rate
-t_max = 20;
+etas = 0.0001: 0.001: 0.1; % learning rates
+t_max = 20; % number of epochs
+errors = zeros(1, numel(etas));
 
 close all;
 
-% e = VQ_epochs(w6_1x, K, eta, t_max);
-
-etas = 0.0001: 0.001: 0.1;
-errors = zeros(1, numel(etas));
-
-for e=1:numel(etas)
-    errors(e) = VQ_epochs(w6_1x, K, etas(e), t_max);
+for eta = etas
+    errors(e) = VQ_epochs(w6_1x, K, eta, t_max);
 end
 
 plot(etas, errors);
