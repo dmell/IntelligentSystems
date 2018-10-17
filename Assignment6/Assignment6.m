@@ -1,7 +1,7 @@
 % read the files
 load('data_lvq.mat');
 
-% K = [2 4]; % number of prototypes
+% K = [1 2]; % number of prototypes
 % eta = [0.1 0.01 0.001]; % learning rates
 K = 2;
 eta = 0.002;
