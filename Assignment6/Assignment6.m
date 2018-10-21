@@ -3,9 +3,9 @@ load('data_lvq.mat');
 
 % K = [1 2]; % number of prototypes
 % eta = [0.1 0.01 0.001]; % learning rates
-K = 2;
+K = 4;
 eta = 0.002;
-t_max = 200; % number of epochs
+t_max = 150; % number of epochs
 
 close all;
 
@@ -18,4 +18,4 @@ w5_1(51:100, 3) = 2;
 % 	end
 % end
 
-LVQ(w5_1, K, eta, t_max);
+LVQ(w5_1, K, eta, t_max, true);
